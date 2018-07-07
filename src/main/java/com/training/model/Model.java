@@ -34,11 +34,8 @@ public class Model {
      * @param value value that have to be processed
      */
     public void processInput(int value) {
-
         checkForWin(value);
-
         statistic.addInfo(currentMinNumber, currentMaxNumber, value, guessed);
-
         refreshModelData(value);
     }
 

@@ -6,8 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Generator of random integer values
  *
- * @since 1.7
  * @author Liakhovetskyi Bohdan
+ * @since 1.7
  */
 public class RandomNumberGenerator {
 
@@ -25,11 +25,15 @@ public class RandomNumberGenerator {
 
     /**
      * Generates random integer value that in range of input parameters
+     *
      * @param min minimum value of random value
      * @param max maximum value of random value
      * @return random integer value
      */
     public int rand(int min, int max) {
+        if(min == max) {
+            return min;
+        }
         return ThreadLocalRandom.current().nextInt(min, max) + 1;
     }
 }

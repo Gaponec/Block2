@@ -16,7 +16,6 @@ public class View {
     public static final String INPUT_REQUEST_FORMAT = "Input number from following range [%d, %d]";
     public static final String INPUT_FORMAT_ERROR = "Error. Input please integer value";
     public static final String INPUT_INTERVAL_ERROR = "Error. Input please number from required range";
-    public static final String INPUT_SUCCESS = "Right";
     public static final String CONGRATULATION = "Congratulation! You successfully guessed the number";
     public static final String STATISTIC = "Your statistic:";
 

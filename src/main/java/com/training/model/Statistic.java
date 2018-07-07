@@ -50,14 +50,21 @@ public class Statistic {
         String resultStatus;
 
         for (Turn turn : userTurns) {
-            resultStatus = (turn.isWinningMove()) ? WRONG_WORD : RIGHT_WORD;
-            stringBuilder.append(
-                    String.format(
-                            STATISTIC_FORMAT, turn.getNumberOfTurn(), turn.getMinNumberRequired(),
-                            turn.getMaxNumberRequired(), turn.getUserInput(), resultStatus) +
-                            System.lineSeparator());
+            stringBuilder.append(String.format(formStatisticOfTurn(turn)));
         }
 
         return stringBuilder.toString();
+    }
+
+    private String formStatisticOfTurn(Turn turn) {
+        String statisticOfTurn = String.format(STATISTIC_FORMAT, turn.getNumberOfTurn(), turn.getMinNumberRequired(),
+                turn.getMaxNumberRequired(), turn.getUserInput(), getResultStatusOfTurn(turn));
+        statisticOfTurn = statisticOfTurn.concat(System.lineSeparator());
+
+        return statisticOfTurn;
+    }
+
+    private String getResultStatusOfTurn(Turn turn) {
+        return turn.isWinningMove() ? RIGHT_WORD : WRONG_WORD;
     }
 }

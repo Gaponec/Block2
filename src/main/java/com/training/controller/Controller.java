@@ -41,7 +41,7 @@ public class Controller {
      * @return user input as integer value
      * @throws NumberFormatException generates if user input isn't integer value
      */
-    private int parseUserInputAsInt() throws NumberFormatException {
+    public int parseUserInputAsInt() throws NumberFormatException {
         return Integer.valueOf(view.readUserInput());
     }
 
@@ -63,10 +63,9 @@ public class Controller {
      */
     private void performGameProcessCycle() {
 
-        int currentInput = 0;
+        int currentInput;
 
         do {
-
             // Output request for user
             view.printMessage(String.format(View.INPUT_REQUEST_FORMAT, model.getCurrentMinNumber(), model.getCurrentMaxNumber()));
 
@@ -74,18 +73,15 @@ public class Controller {
             try {
                 currentInput = parseUserInputAsInt();
                 verifyOnRange(currentInput);
+
+                // Changing state of model and updating view
+                model.processInput(currentInput);
+                view.printMessage(model.getStatistic());
             } catch (NumberFormatException e) {
                 view.printMessage(View.INPUT_FORMAT_ERROR);
-                continue;
             } catch (NumberRangeException e) {
                 view.printMessage(View.INPUT_INTERVAL_ERROR);
-                continue;
             }
-
-            // Changing state of model and updating view
-            model.processInput(currentInput);
-            view.printMessage(model.getStatistic());
-
         } while (!model.isGuessed());
     }
 }
